@@ -37,7 +37,3 @@ public class arraysUnion {
         }
     }
 }
-// single line comment
-        /*
-        multi-line comment
-         */
