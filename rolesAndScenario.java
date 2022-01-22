@@ -1,6 +1,5 @@
 import java.util.HashMap;
 import java.util.ArrayList;
-import java.util.regex.Pattern;
 
 
 public class rolesAndScenario {
@@ -25,18 +24,17 @@ public class rolesAndScenario {
             roles_phrases.put(role, new ArrayList<>());
         }
 
-        Pattern pattern = Pattern.compile(":");
         for (int i = 0; i < textLines.length; i++) {
-            String[] roleName = pattern.split(textLines[i],2);
+            String[] roleName = textLines[i].split(":", 2);
             roles_phrases.get(roleName[0]).add(String.format("%1$s)" + "%2$s", i + 1, roleName[1]));
         }
-        String answer = "";
+        StringBuilder answer = new StringBuilder("");
         for (String role : roles) {
-            answer = answer + role + ":" + "\n";
+            answer.append(role).append(":").append("\n");
             for (int i = 0; i < roles_phrases.get(role).size(); i++) {
-                answer = answer + roles_phrases.get(role).get(i) + "\n";
+                answer.append(roles_phrases.get(role).get(i)).append("\n");
             }
-            answer = answer + "\n";
+            answer.append("\n");
         }
         System.out.println((answer == null || answer.length() == 0) ? null : (answer.substring(0, answer.length() - 2)));
     }
